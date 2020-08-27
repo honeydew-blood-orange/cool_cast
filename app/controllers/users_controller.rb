@@ -5,8 +5,7 @@ class UsersController < ApplicationController
   end 
 
   def create 
-    user = User.new(user_params)
-    user.save!
+    user = User.find_or_create_by(user_params)
     redirect_to(user_path(user))
   end 
 
