@@ -1,3 +1,9 @@
+<% if(review.errors.any?) %>
+  <% for error in review.errors.full_messages do %>
+    <p><%= error %></p>
+  <% end %>
+<% end %>
+
 <%= form_for(review) do |form| %>
   <%= form.label(:title, 'Podcast title') %>
   <%= form.text_field(:title, placeholder: 'The Joe Rogan Experience') %>

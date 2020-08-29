@@ -16,10 +16,10 @@ class ReviewsController < ApplicationController
   end 
 
   def create 
-    review = Review.new(review_params)
-    review.user = User.find(session[:user_id])
-    if (review.save)
-      redirect_to(review_path(review))
+    @review = Review.new(review_params)
+    @review.user = User.find(session[:user_id])
+    if (@review.save)
+      redirect_to(review_path(@review))
     else
       render 'new'
     end 
