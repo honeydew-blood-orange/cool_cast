@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200826172212) do
+ActiveRecord::Schema.define(version: 20200829160748) do
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "title"
+    t.string "author"
+    t.string "image_url"
+    t.string "link"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
