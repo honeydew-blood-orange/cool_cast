@@ -1,0 +1,13 @@
+<%= form_for(review) do |form| %>
+  <%= form.label(:title, 'Podcast title') %>
+  <%= form.text_field(:title, placeholder: 'The Joe Rogan Experience') %>
+  <%= form.label(:author, 'Podcast Author') %>
+  <%= form.text_field(:author, placeholder: 'Joe Rogan') %>
+  <%= form.label(:image_url, 'Podcast image') %>
+  <%= form.text_field(:image_url) %>
+  <%= form.label(:link, 'Podcast link') %>
+  <%= form.text_field(:link, placeholder: 'http://podcasts.joerogan.net/') %>
+  <%= form.label(:body, 'Your review') %>
+  <%= form.text_area(:body) %>
+  <%= form.submit %>
+<% end %>
