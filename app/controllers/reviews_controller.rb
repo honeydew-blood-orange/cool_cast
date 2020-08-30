@@ -49,6 +49,7 @@ class ReviewsController < ApplicationController
       @user = session[:user_id]
     end
     @review = Review.find(params[:id])
+    @comment = Comment.new
   end 
 
   private 

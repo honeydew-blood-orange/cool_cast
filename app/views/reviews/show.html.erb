@@ -6,3 +6,10 @@
   <li><%= @review.image_url %></li>
   <li><%= @review.body %></li>
 </ul>
+<% if (@has_user_signed) %>
+  <%= form_for([@review, @comment]) do |form| %>
+    <%= form.label(:body, 'Add a comment') %>
+    <%= form.text_area(:body) %>
+    <%= form.submit %>
+  <% end %>
+<% end %>
