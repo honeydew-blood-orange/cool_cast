@@ -47,6 +47,7 @@ class ReviewsController < ApplicationController
     if @has_user_signed
       @user = session[:user_id]
     end
+    @review = Review.find(params[:id])
   end 
 
   private 
