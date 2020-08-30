@@ -47,9 +47,9 @@ class ReviewsController < ApplicationController
     @has_user_signed = session[:user_id].present?
     if @has_user_signed
       @user = session[:user_id]
+      @comment = Comment.new
     end
     @review = Review.find(params[:id])
-    @comment = Comment.new
   end 
 
   private 
