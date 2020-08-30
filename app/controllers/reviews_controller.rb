@@ -25,6 +25,23 @@ class ReviewsController < ApplicationController
     end 
   end 
 
+  def edit 
+    @has_user_signed = session[:user_id].present?
+    if @has_user_signed
+      @user = session[:user_id]
+    end
+    @review = Review.find(params[:id])
+  end 
+
+  def update
+    @review = Review.find(params[:id])
+    if (@review.update(review_params))
+      redirect_to(review_path(@review))
+    else
+      render 'edit'
+    end 
+  end 
+
   def show 
     @has_user_signed = session[:user_id].present?
     if @has_user_signed
