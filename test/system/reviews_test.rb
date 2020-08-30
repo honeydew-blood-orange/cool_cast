@@ -133,4 +133,24 @@ class ReviewsTest < ApplicationSystemTestCase
     assert page.has_content?('Podcast author')
     assert page.has_content?('My review body')
   end 
+
+  test 'Reviews are displayed on the review#index view' do 
+    review = Review.new title: 'A podcast title', 
+                        author: 'Podcast author', 
+                        image_url: 'https://is2-ssl.mzstatic.com/image/thumb/Podcasts113/v4/29/10/f0/2910f0bd-bea9-f4cc-d810-0c33a239af6c/mza_1582277213378144435.jpeg/1200x1200bb.jpg', 
+                        link: 'https://www.google.ch/', 
+                        body: 'My review body', 
+                        user: User.new
+    review.save!
+    review_2 = Review.new title: 'A podcast title_2', 
+                        author: 'Podcast author_2', 
+                        image_url: 'https://is2-ssl.mzstatic.com/image/thumb/Podcasts113/v4/29/10/f0/2910f0bd-bea9-f4cc-d810-0c33a239af6c/mza_1582277213378144435.jpeg/1200x1200bb.jpg', 
+                        link: 'https://www.google.ch/', 
+                        body: 'My review body_2', 
+                        user: User.new
+    review_2.save!
+    visit(reviews_path)
+    assert page.has_content?('A podcast title')
+    assert page.has_content?('A podcast title_2')
+  end 
 end

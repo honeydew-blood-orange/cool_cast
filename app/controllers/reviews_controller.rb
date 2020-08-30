@@ -5,6 +5,7 @@ class ReviewsController < ApplicationController
     if @has_user_signed
       @user = session[:user_id]
     end
+    @reviews = Review.all
   end
 
   def new 

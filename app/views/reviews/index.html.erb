@@ -1,1 +1,6 @@
 <h1>Reviews Index</h1>
+<ul>
+  <% for review in @reviews do %>
+    <li><%= review.title %> <%= review.author %> <%= link_to('Details', review_path(review)) %></li>
+  <% end %>
+</ul>
