@@ -37,4 +37,32 @@ class CommentsTest < ApplicationSystemTestCase
     click_on('Create Comment')
     assert current_path.include?(review_path(review))
   end 
+
+  test 'a comment associated with a review is displayed' do 
+    review = Review.new title: 'A podcast title', 
+                        author: 'Podcast author', 
+                        image_url: 'https://is2-ssl.mzstatic.com/image/thumb/Podcasts113/v4/29/10/f0/2910f0bd-bea9-f4cc-d810-0c33a239af6c/mza_1582277213378144435.jpeg/1200x1200bb.jpg', 
+                        link: 'https://www.google.ch/', 
+                        body: 'My review body', 
+                        user: User.new
+    review.save!
+    comment = Comment.new body: 'A comment', 
+                          review: review, 
+                          user: User.new
+    comment.save!
+    visit(review_path(review))
+    assert page.has_content?('A comment')
+  end 
+
+  test 'display of the no comment message' do 
+    review = Review.new title: 'A podcast title', 
+                        author: 'Podcast author', 
+                        image_url: 'https://is2-ssl.mzstatic.com/image/thumb/Podcasts113/v4/29/10/f0/2910f0bd-bea9-f4cc-d810-0c33a239af6c/mza_1582277213378144435.jpeg/1200x1200bb.jpg', 
+                        link: 'https://www.google.ch/', 
+                        body: 'My review body', 
+                        user: User.new
+    review.save!
+    visit(review_path(review))
+    assert page.has_content?('No comment to display')
+  end
 end
