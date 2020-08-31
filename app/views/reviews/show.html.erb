@@ -6,6 +6,10 @@
   <li><%= @review.image_url %></li>
   <li><%= @review.body %></li>
 </ul>
+
+<%= form_tag(user_bookmarks_path(@user)) %>
+<% end %>
+
 <% if(@has_user_signed) %>
   <%= form_for([@review, @comment]) do |form| %>
     <%= form.label(:body, 'Add a comment') %>
