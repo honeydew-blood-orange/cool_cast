@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :users do 
-    resources :bookmark
+    resources :bookmarks
   end 
   
   resources :reviews do
