@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
-  resources :users
+  resources :users do 
+    resources :bookmark
+  end 
   
   resources :reviews do
     resources :comments
