@@ -7,7 +7,11 @@
   <li><%= @review.body %></li>
 </ul>
 
-<%= form_tag(user_bookmarks_path(@user)) %>
+<% if(@has_user_signed) %>
+  <%= form_tag(user_bookmarks_path(@user)) do %>
+    <%= hidden_field_tag('review_id', @review.id) %>
+    <%= button_tag('Bookmark', type: 'submit') %>
+  <% end %>
 <% end %>
 
 <% if(@has_user_signed) %>

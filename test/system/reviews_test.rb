@@ -153,4 +153,37 @@ class ReviewsTest < ApplicationSystemTestCase
     assert page.has_content?('A podcast title')
     assert page.has_content?('A podcast title_2')
   end 
+
+  test 'Bookmark button is not display if Visitor' do
+    review = Review.new title: 'A podcast title', 
+                        author: 'Podcast author', 
+                        image_url: 'https://is2-ssl.mzstatic.com/image/thumb/Podcasts113/v4/29/10/f0/2910f0bd-bea9-f4cc-d810-0c33a239af6c/mza_1582277213378144435.jpeg/1200x1200bb.jpg', 
+                        link: 'https://www.google.ch/', 
+                        body: 'My review body', 
+                        user: User.new
+    review.save!
+    visit(review_path(review))
+    refute page.has_content?('Bookmark')
+  end 
+
+  test 'A Review can be bookmarked' do 
+    user = User.new username: 'Username', 
+                    email: 'user@user.ch'
+    user.save!
+    review = Review.new title: 'A podcast title', 
+                        author: 'Podcast author', 
+                        image_url: 'https://is2-ssl.mzstatic.com/image/thumb/Podcasts113/v4/29/10/f0/2910f0bd-bea9-f4cc-d810-0c33a239af6c/mza_1582277213378144435.jpeg/1200x1200bb.jpg', 
+                        link: 'https://www.google.ch/', 
+                        body: 'My review body', 
+                        user: User.new
+    review.save!
+    visit(new_user_path)
+    fill_in('Username', with: 'Username')
+    fill_in('Email', with: 'user@user.ch')
+    click_on('Log in')
+    visit(review_path(review))
+    assert page.has_content?('Bookmark')
+    click_on('Bookmark')
+    assert_equal(user.bookmarks.length, 1)
+  end 
 end
