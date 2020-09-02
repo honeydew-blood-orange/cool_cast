@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'about/index'
+
   root to: 'home#index'
 
   resources :users do 

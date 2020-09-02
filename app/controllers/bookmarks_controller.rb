@@ -7,4 +7,11 @@ class BookmarksController < ApplicationController
     redirect_back(fallback_location: review_path(@review))
   end 
 
+  def destroy 
+    @review = Review.find(params[:review_id])
+    @user = User.find(params[:user_id])
+    @user.bookmarks.destroy @review
+    redirect_back(fallback_location: review_path(@review))
+  end 
+
 end

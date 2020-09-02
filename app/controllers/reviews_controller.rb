@@ -46,8 +46,9 @@ class ReviewsController < ApplicationController
   def show 
     @has_user_signed = session[:user_id].present?
     if @has_user_signed
-      @user = session[:user_id]
+      @user = User.find(session[:user_id])
       @comment = Comment.new
+      @is_bookmarked = @user.bookmarks.exists?(params[:id])
     end
     @review = Review.find(params[:id])
   end 
