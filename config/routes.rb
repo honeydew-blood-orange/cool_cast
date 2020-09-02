@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'about/index'
-
   root to: 'home#index'
+
+  get 'about', to: 'about#index'
 
   resources :users do 
     resources :bookmarks

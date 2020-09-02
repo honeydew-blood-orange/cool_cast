@@ -1,8 +1,14 @@
 <header>
   <%= link_to('CoolCast', root_path) %>
-  <% if(@has_user_signed) %>
-    <%= render(partial: 'menu_user', locals: { user_id: @user }) %>
-  <% else %>
-    <%= render(partial: 'menu_visitor') %>
-  <% end %>
+  <ul>
+    <li><%= link_to('About', about_path) %></li>
+    <li><%= link_to('Podcasts', reviews_path) %></li>
+    <%# User menu %>
+    <% if(@has_user_signed) %>
+      <li><%= link_to('Account', user_path(@user)) %></li>
+    <%# Visitor menu %>
+    <% else %>
+      <li><%= link_to('Log in / Register', new_user_path) %></li>
+    <% end %>
+  </ul>
 </header>
