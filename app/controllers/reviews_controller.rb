@@ -5,7 +5,11 @@ class ReviewsController < ApplicationController
     if @has_user_signed
       @user = session[:user_id]
     end
+    @search_term = params[:q]
     @reviews = Review.all
+    if @search_term
+      @reviews = Review.search_results(@search_term)
+    end
   end
 
   def new 

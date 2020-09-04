@@ -1,0 +1,6 @@
+<%= image_tag(review.image_url) %>
+<h3><%= review.title %></h3>
+<span><%= review.author %></span>
+<div>
+  <%= link_to('Details', review_path(review)) %>
+</div>

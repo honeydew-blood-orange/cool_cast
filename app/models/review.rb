@@ -9,4 +9,9 @@ class Review < ApplicationRecord
   has_many :comments
   has_and_belongs_to_many :users
 
+  def self.search_results(search_term)
+    wildcard = "%#{search_term}%"
+    where('title LIKE ?', wildcard).or(where('body LIKE ?', wildcard).or(where('author LIKE ?', wildcard)))
+  end
+
 end

@@ -1,6 +1,19 @@
-<h1>Reviews Index</h1>
-<ul>
-  <% for review in @reviews do %>
-    <li><%= review.title %> <%= review.author %> <%= link_to('Details', review_path(review)) %></li>
+<% if(@search_term) %>
+  <h1>Results for "<%= @search_term %>"</h1>
+  <% if(@reviews.length < 1) %>
+    <p>No result to display</p>
+  <% else %>
+    <ul>
+      <% for review in @reviews do %>
+        <li><%= render(partial: 'card_review', locals: {review: review}) %> </li>
+      <% end %>
+    </ul>
   <% end %>
-</ul>
+<% else %>
+  <h1>All the Reviews</h1>
+  <ul>
+    <% for review in @reviews do %>
+      <li><%= render(partial: 'card_review', locals: {review: review}) %> </li>
+    <% end %>
+  </ul>
+<% end %>

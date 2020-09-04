@@ -1,0 +1,11 @@
+<% if(@is_bookmarked) %>
+  <%= form_tag(user_bookmark_path(@user, @review), method: :delete) do %>
+    <%= hidden_field_tag('review_id', @review.id) %>
+    <%= button_tag('Un-Bookmark', type: 'submit') %>
+  <% end %>
+<% else %>
+  <%= form_tag(user_bookmarks_path(@user)) do %>
+    <%= hidden_field_tag('review_id', @review.id) %>
+    <%= button_tag('Bookmark', type: 'submit') %>
+  <% end %>
+<% end %>

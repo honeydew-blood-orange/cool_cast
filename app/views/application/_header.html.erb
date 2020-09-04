@@ -1,14 +1,27 @@
-<header>
-  <%= link_to('CoolCast', root_path) %>
-  <ul>
-    <li><%= link_to('About', about_path) %></li>
-    <li><%= link_to('Podcasts', reviews_path) %></li>
-    <%# User menu %>
-    <% if(@has_user_signed) %>
-      <li><%= link_to('Account', user_path(@user)) %></li>
-    <%# Visitor menu %>
-    <% else %>
-      <li><%= link_to('Log in / Register', new_user_path) %></li>
+<header class='container-fluid navbar pb-3 mb-5 border border-warning border-top-0 border-right-0 border-left-0 justify-content-center justify-content-sm-around'>
+  <div>
+    <%= link_to(root_path, class: 'navbar-brand') do %>
+      <%= image_tag('logo_cool_cast.png', alt: 'Logo CoolCast') %>
     <% end %>
-  </ul>
+  </div>
+  <div>
+    <%= form_tag(reviews_path, class: 'form-inline flex-nowrap', method: 'GET') do %>
+      <label class='sr-only' for='q'>Looking for a podcast</label>
+      <%= text_field_tag('q', nil, placeholder: 'Search', class: 'form-control') %>
+      <%= submit_tag('Search', class: 'btn btn-warning my-2 my-sm-0', name: nil) %>
+    <% end %>
+  </div>
+  <nav>
+    <ul class='nav mr-sm-5 pt-4 pt-sm-0'>
+      <li class='nav-item ml-3 ml-sm-5'><%= link_to('ABOUT', about_path) %></li>
+      <li class='nav-item ml-3 ml-sm-5'><%= link_to('PODCASTS', reviews_path) %></li>
+      <%# User menu %>
+      <% if(@has_user_signed) %>
+        <li class='nav-item ml-3 ml-sm-5'><%= link_to('ACCOUNT', user_path(@user)) %></li>
+      <%# Visitor menu %>
+      <% else %>
+        <li class='nav-item ml-3 ml-sm-5'><%= link_to('LOG IN / REGISTER', new_user_path) %></li>
+      <% end %>
+    </ul>
+  </nav>
 </header>
